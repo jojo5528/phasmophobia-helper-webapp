@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import '@/sass/variables.scss';
+import './sass/variables.scss';
 export default {
 	data(){
 		return{

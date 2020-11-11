@@ -21,7 +21,7 @@
 							<thead>
 								<tr>
 									<th class="text-center">Ghost Name</th>
-									<th class="text-center black--text font-weight-black text-subtitle-1"
+									<th class="text-center black--text font-weight-bold text-subtitle-1"
 										v-for="evd in evidenceCompute" :key="evd.id">
 										{{ evd.text }}
 									</th>
@@ -37,7 +37,7 @@
 								</tr>
 
 								<tr v-for="([ghost, evidence], idx) in ghostCompute" :key="idx">
-									<td class="text-left text-uppercase black--text font-weight-black text-subtitle-1">{{ ghost }}</td>
+									<td class="text-left text-uppercase black--text font-weight-bold text-subtitle-1">{{ ghost }}</td>
 									<td v-for="evd in evidenceCompute" :key="evd.id">
 										<v-icon v-if="evidence.includes(evd.id)" large color="green darken-2">mdi-check-bold</v-icon>
 										<v-icon v-else x-small>mdi-minus</v-icon>
