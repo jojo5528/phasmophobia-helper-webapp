@@ -94,13 +94,6 @@ export default {
 			if(!proofSelect.length) return evidenceData;
 
 			evidenceData.map(evd => {
-				/*
-				if(!proofSelect.includes(evd.id)){
-					var tempEvd = Object.assign({}, evd);
-					tempEvd.noGhost = 0;
-					data.push(tempEvd);
-				}
-				*/
 				var tempEvd = Object.assign({}, evd);
 				tempEvd.noGhost = 0;
 				data.push(tempEvd);

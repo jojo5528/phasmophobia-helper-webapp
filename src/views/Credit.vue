@@ -1,6 +1,13 @@
 <template>
 	<v-row>
         <v-col cols="12">
+            <v-alert text outlined color="deep-orange" icon="mdi-fire">
+                พบปัญหาการใช้งาน หรือมีข้อเสนอแนะใดๆติดต่อได้ที่ Discord ผู้พัฒนาเลยครับ.<br>
+                If you occur problem or have any discuss, please contact me from dev's discord.
+            </v-alert>
+        </v-col>
+
+        <v-col cols="12">
 			<v-card>
                 <v-card-title>Notes</v-card-title>
                 <v-card-text>
@@ -33,8 +40,9 @@ export default {
                 { id: 1, name: 'ข้อมูลเมนูต่างๆ :',
                     children: [
                         { id: 2, name: 'Evidence: ตัวช่วยในการจัดการหลักฐาน จะช่วยในการระบุหลักฐานของผีชนิดต่างๆ' },
-                        { id: 3, name: 'Guess: ตัวช่วยการคาดเดา อ้างอิงข้อมูลจาก wiki และประสบการณ์การเล่นที่ได้เล่นมา' },
-                        { id: 4, name: 'Guess(Funny): ตัวช่วยการคาดเดา จะช่วยคุณในการเดาผี โดยอ้างอิงข้อมูลจาก สถิติการวิเคราะห์ของคนใน discord เซิฟไทย ฮ่าๆ (ขำๆนะครับ)' },
+                        { id: 3, name: 'Guess: นำระบบออกแล้วครับ เนื่องจากไม่แม่นยำและข้อผิดพลาดเยอะ โดยนำ Ghost Analyze มาแทน' },
+                        { id: 4, name: 'Guess(Funny): นำระบบออกแล้วครับ เนื่องจากไม่แม่นยำและข้อผิดพลาดเยอะ โดยนำ Ghost Analyze มาแทน' },
+                        { id: 5, name: 'Ghost Analyze: ช่วยตัดสินใจตัวเลือกชนิดของผี จากพฤติกรรมของผี' },
                     ],
                 }
             ],
@@ -42,8 +50,9 @@ export default {
                 { id: 1, name: 'Menu Information :',
                     children: [
                         { id: 2, name: 'Evidence: Evidence Helper, this can help you to remember & determine the ghost type evidence' },
-                        { id: 3, name: 'Guess: Guess Helper, this can help you to guess the ghost type from some behavior information from wiki & played experience' },
-                        { id: 4, name: 'Guess(Funny): Guess Helper, this help you to guess the ghost type by information from TH player in discord community experience LOL (this make for joke)' },
+                        { id: 3, name: 'Guess: Deprecated cause too much mistake, use Ghost Analyze instead.' },
+                        { id: 4, name: 'Guess(Funny): Deprecated cause too much mistake, use Ghost Analyze instead.' },
+                        { id: 5, name: 'Ghost Analyze: Determine range of ghost type could be from ghosts behavior' },
                     ],
                 }
             ],

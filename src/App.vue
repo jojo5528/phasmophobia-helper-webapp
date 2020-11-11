@@ -26,7 +26,7 @@
 					<hr class="my-3">
 
 					<p class="text-caption">
-						App v.1.0 | Nov 10th dev<br>
+						App v.1.0.1 | Nov 11st dev<br>
 						Phasmophobia EA v.0.176.39<br>
 						November 4th Update<br>
 						<a href="https://github.com/jojo5528/phasmophobia-helper-webapp" target="_blank">
@@ -60,14 +60,15 @@
 </template>
 
 <script>
+import '@/sass/variables.scss';
 export default {
 	data(){
 		return{
 			navToggle: null,
 			links: [
 				['mdi-home-search', 'Evidence', '/'],
-				['mdi-head-question', 'Guess', '/guess'],
-				['mdi-head-sync', 'Guess (Funny)', '/guess-funny'],
+				['mdi-brain', 'Ghost Analyze', '/ghost-analyze'],
+				['mdi-code-array', 'Change Log', '/changelog'],
 				['mdi-information', 'Credit', '/credit'],
 			],
 		}
