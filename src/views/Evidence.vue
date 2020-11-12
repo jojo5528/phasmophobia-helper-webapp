@@ -4,6 +4,14 @@
 			<v-card>
 				<v-card-text class="pt-0">
 					<v-row>
+						<v-col cols="12">
+							<v-switch
+								v-model="ExceptMode"
+								:label="ExceptMode ? 'MODE: EXCEPT' : 'MODE: CONTAIN'"
+							></v-switch>
+						</v-col>
+					</v-row>
+					<v-row>
 						<v-col cols="6" md="4" v-for="evd in evidenceData" :key="evd.id">
 							<v-checkbox
 								v-model="proofSelect"
@@ -21,7 +29,7 @@
 							<thead>
 								<tr>
 									<th class="text-center">Ghost Name</th>
-									<th class="text-center black--text font-weight-bold text-subtitle-1"
+									<th class="text-center font-weight-bold text-subtitle-1" :class="darkMode ? 'white--text' : 'black--text'"
 										v-for="evd in evidenceCompute" :key="evd.id">
 										{{ evd.text }}
 									</th>
@@ -37,9 +45,9 @@
 								</tr>
 
 								<tr v-for="([ghost, evidence], idx) in ghostCompute" :key="idx">
-									<td class="text-left text-uppercase black--text font-weight-bold text-subtitle-1">{{ ghost }}</td>
+									<td class="text-left text-uppercase font-weight-bold text-subtitle-1" :class="darkMode ? 'white--text' : 'black--text'">{{ ghost }}</td>
 									<td v-for="evd in evidenceCompute" :key="evd.id">
-										<v-icon v-if="evidence.includes(evd.id)" large color="green darken-2">mdi-check-bold</v-icon>
+										<v-icon v-if="evidence.includes(evd.id)" large :color="darkMode ? 'green' : 'green darken-2'">mdi-check-bold</v-icon>
 										<v-icon v-else x-small>mdi-minus</v-icon>
 									</td>
 								</tr>
@@ -59,6 +67,7 @@ export default {
 	name: 'Evidence',
 	data(){
 		return{
+			ExceptMode: false,
 			proofSelect: [],
 			evidenceData: [
 				{id: 1, text: 'EMF-5'},
@@ -93,6 +102,7 @@ export default {
 
 			if(!proofSelect.length) return evidenceData;
 
+			//assign noGhost counting in each evidence
 			evidenceData.map(evd => {
 				var tempEvd = Object.assign({}, evd);
 				tempEvd.noGhost = 0;
@@ -100,6 +110,7 @@ export default {
 			});
 
 			if(ghostCompute.length){
+				//counting evidence noGhost
 				ghostCompute.map(([ghost, ghostEvd]) => {
 					data.map(evd => {
 						if(!ghostEvd.includes(evd.id)){
@@ -107,6 +118,7 @@ export default {
 						}
 					})
 				});
+				//remove evidence if noGhost
 				for(var i=(data.length-1); i>=0; i--){
 					if(data[i].noGhost===ghostCompute.length){
 						data.splice(i, 1);
@@ -124,21 +136,38 @@ export default {
 			if(!proofSelect.length) return ghostData;
 
 			ghostData.map(([ghost, ghostEvd], idx) => {
-
 				var success = 0, fail = 0;
-				proofSelect.map(proof => {
-					if(ghostEvd.includes(proof)){
-						success++;
-					}else if(!ghostEvd.includes(proof)){
-						fail++;
-					}
-				});
+
+				if(this.ExceptMode){
+					//counting ghost evidences EXCEPT MODE
+					proofSelect.map(proof => {
+						if(!ghostEvd.includes(proof)){
+							success++;
+						}else if(ghostEvd.includes(proof)){
+							fail++;
+						}
+					});
+				}else{
+					//counting ghost evidences
+					proofSelect.map(proof => {
+						if(ghostEvd.includes(proof)){
+							success++;
+						}else if(!ghostEvd.includes(proof)){
+							fail++;
+						}
+					});
+				}
+
+				//add ghost to data if ghost has evidences
 				if(success>0 && success<4 && fail<1){
 					data.push(ghostData[idx]);
 				}
 			});
 
 			return data;
+		},
+		darkMode(){
+			return this.$vuetify.theme.dark;
 		},
 	},
 	methods:{

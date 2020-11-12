@@ -15,7 +15,9 @@
         <v-col cols="12">
             <v-card>
                 <v-card-title>
-                    <h3 class="black--text">{{ language==='TH' ? 'พฤติกรรมผี' : 'Ghost Behavior' }}</h3>
+                    <h3 :class="darkMode ? 'white--text' : 'black--text'">
+                        {{ language==='TH' ? 'พฤติกรรมผี' : 'Ghost Behavior' }}
+                    </h3>
                 </v-card-title>
                 <v-card-text>
                     <v-row>
@@ -38,24 +40,35 @@
         <v-col cols="12">
             <v-card>
                 <v-card-title>
-                    <h3 class="black--text">{{ language==='TH' ? 'วิเคราะห์ชนิดผี' : 'Ghost Analyze' }}</h3>
+                    <h3 :class="darkMode ? 'white--text' : 'black--text'">
+                        {{ language==='TH' ? 'วิเคราะห์ชนิดผี' : 'Ghost Analyze' }}
+                    </h3>
                 </v-card-title>
                 <v-card-text>
                     <p>
-                        <v-btn color="pink" dark x-large @click="resetGhost"><v-icon left>mdi-sync</v-icon> RE-ANALYZE</v-btn>
+                        <v-btn :color="darkMode ? 'pink darken-3' : 'pink'" dark x-large @click="resetGhost">
+                            <v-icon left>mdi-sync</v-icon> RE-ANALYZE
+                        </v-btn>
                     </p>
-                    <p class="text-uppercase">
+
+                    <p class="text-uppercase font-weight-bold" :class="darkMode ? 'white--text' : 'black--text'">
                         {{ language==='TH' ? 'ชนิดผี' : 'Ghost Type' }}
-                        <v-chip class="ma-2" color="green darken-4" label text-color="white" close @click:close="removeGhost(ghost.name)" large v-for="(ghost, idx) in ghostAnalyzeCompute" :key="idx">
+                        <v-chip
+                            class="ma-2" :color="darkMode ? 'green darken-4' : 'green darken-2'" label text-color="white"
+                            close @click:close="removeGhost(ghost.name)" large
+                            v-for="(ghost, idx) in ghostAnalyzeCompute" :key="idx"
+                        >
                             <v-icon left>mdi-ghost</v-icon>
                             {{ ghost.name }}
                         </v-chip>
                     </p>
-                    <hr class="my-3 blue light-4">
+
+                    <hr class="my-3" :class="darkMode ? 'white' : 'blue light-4'">
+
                     <div v-for="(item, idx) in descCompute" :key="idx">
-                        <p class="font-weight-bold text-h6 indigo--text ma-0">{{ item.caption }} : {{ item.text }}</p>
-                        <p v-html="item.desc"></p>
-                        <hr v-if="item.desc" class="my-3">
+                        <p class="font-weight-bold text-h6 ma-0" :class="darkMode ? 'light-blue--text' : 'indigo--text'">{{ item.caption }} : {{ item.text }}</p>
+                        <p v-html="item.desc" :class="darkMode ? 'white--text' : 'black--text'"></p>
+                        <hr v-if="item.desc" class="my-3" :class="darkMode ? 'yellow' : ''">
                     </div>
                 </v-card-text>
             </v-card>
@@ -204,6 +217,9 @@ export default {
             });
 
             return data;
+        },
+        darkMode(){
+            return this.$vuetify.theme.dark;
         },
     },
 	methods:{

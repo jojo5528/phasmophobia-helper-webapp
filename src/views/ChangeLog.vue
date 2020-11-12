@@ -48,6 +48,11 @@ export default {
                         { name: 'แก้ไข: UI, Fonts' },
                     ],
                 },
+                { name: 'v1.0.2',
+                    children: [
+                        { name: 'เพิ่ม: DarkMode, ExceptMode(Evidence)' },
+                    ],
+                },
             ],
             changeLogEN: [
                 { name: 'v1.0.0',
@@ -62,6 +67,11 @@ export default {
                         { name: 'Remove: Guess, Guess (Funny)' },
                         { name: 'Add: Ghost Analyze' },
                         { name: 'Modify: UI, Fonts' },
+                    ],
+                },
+                { name: 'v1.0.2',
+                    children: [
+                        { name: 'Add: DarkMode, ExceptMode(Evidence)' },
                     ],
                 },
             ],
